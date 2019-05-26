@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>UIComponent</RootNamespace>
     <AssemblyName>UIComponent</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
