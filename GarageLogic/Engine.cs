@@ -17,7 +17,12 @@ namespace Ex03.GarageLogic
             get { return m_EnergyUnitLeft; }
             set { m_EnergyUnitLeft = value; } 
         }
-        public float MaxEnergyUnit { get => m_MaxEnergyUnit; set => m_MaxEnergyUnit = value; }
+        public float MaxEnergyUnit
+        {
+            get { return m_MaxEnergyUnit; }
+            set { m_MaxEnergyUnit = value; }
+        
+        }
 
         public Engine(float i_MaxEnergyUnit)//float i_EnergyUnitLeft, 
         {
