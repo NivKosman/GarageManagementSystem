@@ -13,6 +13,7 @@ namespace Ex03.ConsoleUI
             IOhandler io = new IOhandler();
 
             io.AddNewVehicle();
+            io.ShowAllLicenseNumberVehicle();
           }
      }
 }

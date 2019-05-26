@@ -43,7 +43,8 @@ namespace Ex03.GarageLogic
             List<Wheel> wheels = new List<Wheel>(i_NumOfWheels);
             for (int i = 0; i < i_NumOfWheels; i++)
             {
-                wheels[i] = new Wheel(i_MaxPressure);
+                Wheel wheel = new Wheel(i_MaxPressure);
+                wheels.Add(wheel); 
             }
 
             return wheels;

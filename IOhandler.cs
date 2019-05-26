@@ -75,12 +75,12 @@ namespace Ex03.ConsoleUI
                }
           }
 
-          public void ShowAllLicenseNumberVehicle()
-          {
-               StringBuilder sb = new StringBuilder();
-               // sb=m_Garage.AllLicenseNumber();
-               m_UI.PrintMessage(sb.ToString());
-          }
+        public void ShowAllLicenseNumberVehicle()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb = m_Garage.AllLicenseNumbers();
+            m_UI.PrintMessage(sb.ToString());
+        }
 
           public void ShowLicenseNumberByStatus(eVehicleStatus i_Status)
           {
@@ -195,8 +195,7 @@ namespace Ex03.ConsoleUI
 
         public void AddNewVehicle() 
         {
-            m_UI.AskingLicenseNumber();
-            string licenseNumber = m_UI.GetInput();
+            string licenseNumber = m_UI.AskingLicenseNumber();
             bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
             if (vehicleExist)
@@ -362,7 +361,7 @@ namespace Ex03.ConsoleUI
             GarageLogic.eVehicleType vehicleType;
             try
             {
-                vehicleType = GetVehicleType<GarageLogic.eVehicleType>(Messages.SelectVehicleType);
+                vehicleType = GetEnumType<GarageLogic.eVehicleType>(Messages.SelectVehicleType);
             } 
             catch (Exception ex)
             {
@@ -373,14 +372,14 @@ namespace Ex03.ConsoleUI
             return vehicleType;
         }
 
-        public T GetVehicleType<T>(string i_Message)
+        public T GetEnumType<T>(string i_Message)
         {
             IEnumerable<T> enumOptions = GarageLogic.eNumUtils.GetValues<T>();
             m_UI.ShowOptions(i_Message, enumOptions);
             string selectedOption = m_UI.GetInput();
             int selectedNumber;
             int.TryParse(selectedOption, out selectedNumber);
-            T selectEnum = (T)Enum.ToObject(typeof(GarageLogic.eVehicleType), selectedNumber);
+            T selectEnum = (T)Enum.ToObject(typeof(T), selectedNumber);
 
             return selectEnum;
         }
