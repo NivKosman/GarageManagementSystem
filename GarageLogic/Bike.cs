@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
           }
         public Bike(string i_ModelName, string i_LicenseNumber, int i_EngineSize,
              eBikeLicenseType i_LicenseType, Engine i_Engine, List<Wheel> i_Wheels) :
-             base(i_ModelName, i_LicenseNumber, i_Engine, i_Wheels)
+             base(i_LicenseNumber, i_Engine, i_Wheels)
         {
             r_LicenseType = i_LicenseType;
             r_EngineSize = i_EngineSize;

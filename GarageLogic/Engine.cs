@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
             get { return m_EnergyUnitLeft; }
         }
 
-        protected void Fill(float i_AmoutToFill)
+        public void Fill(float i_AmoutToFill)
         {
             if (EnergyUnitLeft + i_AmoutToFill <= MaxEnergyUnit)
             {

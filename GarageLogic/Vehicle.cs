@@ -61,6 +61,11 @@ namespace Ex03.GarageLogic
             //set { m_Engine = value; }
             get { return r_Engine; } 
         }
+
+        public void Fill(float i_ToFill)
+        {
+            r_Engine.Fill(i_ToFill);
+        }
     
 
     }
