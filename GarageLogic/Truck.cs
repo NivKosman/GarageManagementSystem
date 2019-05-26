@@ -17,15 +17,16 @@ namespace Ex03.GarageLogic
                return string.Format(@"{1}{0}
                                    Holds Danager Cargo:{2}{0}
                                    Cargo capacity:{3}",
-                                   Environment.NewLine, base().ToString, v_IsHoldsDangerCargo, m_CargoCapacity);
+                                   Environment.NewLine, base.ToString(), v_IsHoldsDangerCargo, m_CargoCapacity);
           }
 
-        public Truck(string i_ModelName, string i_LicenseNumber, Engine i_Engine,
+        public Truck(string i_LicenseNumber, Engine i_Engine,
              bool i_IsHoldsDangerCargo, float i_CargoCapicity, List<Wheel> i_Wheels) :
-             base(i_ModelName, i_LicenseNumber, i_Engine, i_Wheels)
+             base(i_LicenseNumber, i_Engine, i_Wheels)
         {
             v_IsHoldsDangerCargo = i_IsHoldsDangerCargo;
             m_CargoCapacity = i_CargoCapicity;
+            //ModelName = i_ModelName; //string i_ModelName,
         }
 
         public float CargoCapacity

@@ -13,7 +13,7 @@ namespace Ex03.GarageLogic
         private const int k_CarMaxElectricEngTime = 108; //1.8 * 60
         private const int k_CarMaxFuelCapacity = 55;
         private const eFuelType k_CarFuelType = eFuelType.Octan96;
-        private MakeCreateNewCarRequest m_Request;
+        //private MakeCreateNewCarRequest m_Request;
 
         public Vehicle CreateNewCarOfType(eVehicleType i_VehicleType, string i_LicenseNumber)
         {

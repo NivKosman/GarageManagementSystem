@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
@@ -274,7 +274,7 @@ namespace Ex03.ConsoleUI
             }
             else if (fieldType == typeof(Boolean)) //is boolean
             {
-                fieldOutName.Concat(string.Format("(1 - True, 0 - False){0}",Environment.NewLine));
+                fieldOutName = string.Concat(fieldOutName, string.Format("(1 - True, 0 - False){0}",Environment.NewLine));
                 m_UI.PrintMessage(fieldOutName);
                 bool boolValue = m_UI.GetBool();
                 setMemberValue<bool>(i_memberField, i_Vehicle, boolValue);
