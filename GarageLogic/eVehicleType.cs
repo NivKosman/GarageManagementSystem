@@ -3,11 +3,11 @@ namespace Ex03.GarageLogic
 {
     public enum eVehicleType
     {
-        ElectricBike,
-        FuelBike,
-        ElectricCar,
-        FuelCar,
-        Truck,
-        NotValidRequest
+        ElectricBike = 1,
+        FuelBike = 2,
+        ElectricCar = 3,
+        FuelCar = 4,
+        Truck = 5,
+        //NotValidReques = 
     }
 }
