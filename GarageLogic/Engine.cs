@@ -12,7 +12,11 @@ namespace Ex03.GarageLogic
         protected float m_MaxEnergyUnit;
         protected const float k_MinToFill = 0;
 
-        public float EnergyUnitLeft { get => m_EnergyUnitLeft; set => m_EnergyUnitLeft = value; }
+        public float EnergyUnitLeft 
+        {
+            get { return m_EnergyUnitLeft; }
+            set { m_EnergyUnitLeft = value; } 
+        }
         public float MaxEnergyUnit { get => m_MaxEnergyUnit; set => m_MaxEnergyUnit = value; }
 
         public Engine(float i_MaxEnergyUnit)//float i_EnergyUnitLeft, 
