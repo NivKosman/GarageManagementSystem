@@ -26,54 +26,54 @@ namespace Ex03.ConsoleUI
             switch (i_Selection)
             {
                 case (1):
-                         AddNewVehicle();
-                         break;
+                    AddNewVehicle();
+                    break;
                 case (2):
-                         ShowLicenseNumberVehicle();
-                         break;
+                    ShowLicenseNumberVehicle();
+                    break;
                 case (3):
-                         ChangeStatusOfVehicle();
-                         break;
+                    ChangeStatusOfVehicle();
+                    break;
                 case (4):
-                         FillWheelsToMaximum();
-                         break;
+                    FillWheelsToMaximum();
+                    break;
                 case (5):
-                         FillFuelVehicle();
-                         break;
+                    FillFuelVehicle();
+                    break;
                 case (6):
-                         FillElectricVehicle();
-                         break;
+                    FillElectricVehicle();
+                    break;
                 case (7):
-                         ShowFullDetailsOfVehcile();
-                         break;
+                    ShowFullDetailsOfVehcile();
+                    break;
                 default:
                     string errMsg = string.Format("Error: Invalid option was entered: {0}", i_Selection);
                     throw new FormatException(errMsg);
             }
         }
-          
-          public void ShowLicenseNumberVehicle()
-          {
-               m_UI.PrintMessage(Messages.AskingAllOrByStatus);
-               int statusNumber;
-               string statusNumberString = m_UI.GetInput();
 
-               if (!m_Validator.CheckIfInputIsNumber(statusNumberString, out statusNumber))
-               {
-                    throw new FormatException(Messages.FormatMessages);
-               }
-               else
-               {
-                    if (!m_Validator.CheckIfNumberInRangeOfNewStatus(ref statusNumber))
-                    {
-                         ShowAllLicenseNumberVehicle();
-                    }
-                    else
-                    {
-                         ShowLicenseNumberByStatus((eVehicleStatus)statusNumber);
-                    }
-               }
-          }
+        public void ShowLicenseNumberVehicle()
+        {
+            m_UI.PrintMessage(Messages.AskingAllOrByStatus);
+            int statusNumber;
+            string statusNumberString = m_UI.GetInput();
+
+            if (!m_Validator.CheckIfInputIsNumber(statusNumberString, out statusNumber))
+            {
+                throw new FormatException(Messages.FormatMessages);
+            }
+            else
+            {
+                if (!m_Validator.CheckIfNumberInRangeOfNewStatus(ref statusNumber))
+                {
+                    ShowAllLicenseNumberVehicle();
+                }
+                else
+                {
+                    ShowLicenseNumberByStatus((eVehicleStatus)statusNumber);
+                }
+            }
+        }
 
         public void ShowAllLicenseNumberVehicle()
         {
@@ -82,118 +82,117 @@ namespace Ex03.ConsoleUI
             m_UI.PrintMessage(sb.ToString());
         }
 
-          public void ShowLicenseNumberByStatus(eVehicleStatus i_Status)
-          {
-               StringBuilder sb = new StringBuilder();
-               // sb=m_GarageAllLicenseNumbersByStatus(eVehicleStatus i_Status)
-               m_UI.PrintMessage(sb.ToString());
-          }
-          public void ChangeStatusOfVehicle()
-          {
-               m_UI.AskingLicenseNumber();
-               string licenseNumber = m_UI.GetInput();
-               m_Validator.ValidateLicenseNumber(licenseNumber);
-               int statusNumber;
-               m_UI.AskingNewStatusOfVehicle();
-               string statusNumberString = m_UI.GetInput();
+        public void ShowLicenseNumberByStatus(eVehicleStatus i_Status)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb = m_Garage.AllLicenseNumbersByStatus(i_Status);
+            m_UI.PrintMessage(sb.ToString());
+        }
+        public void ChangeStatusOfVehicle()
+        {
+            m_UI.AskingLicenseNumber();
+            string licenseNumber = m_UI.GetInput();
+            m_Validator.ValidateLicenseNumber(licenseNumber);
+            string statusNumberString = m_UI.AskingNewStatusOfVehicle();
 
-               if (!m_Validator.CheckIfInputIsNumber(statusNumberString, out statusNumber))
-               {
-                    throw new FormatException(Messages.FormatMessages);
-               }
-               else
-               {
-                    if (!m_Validator.CheckIfNumberInRangeOfNewStatus(ref statusNumber))
-                    {
-                         //ValueOutOfRangeExeption
-                    }
-                    else
-                    {
-                         //m_garage.UpdateVehicleStatus(licenseNumber,statusnumber)
-                    }
-               }
-          }
+            m_Garage.UpdateVehicleStatus(licenseNumber, statusNumberString);
+            //if (!m_Validator.CheckIfInputIsNumber(statusNumberString, out statusNumber))
+            //{
+            //    throw new FormatException(Messages.FormatMessages);
+            //}
+            //else
+            //{
+            //    if (!m_Validator.CheckIfNumberInRangeOfNewStatus(ref statusNumber))
+            //    {
+            //        //ValueOutOfRangeExeption
+            //    }
+            //    else
+            //    {
+            //        //m_garage.UpdateVehicleStatus(licenseNumber,statusnumber)
+            //    }
+            //}
+        }
 
-          public void FillWheelsToMaximum()
-          {
-               m_UI.AskingLicenseNumber();
-               string licenseNumber = m_UI.GetInput();
-               m_Validator.ValidateLicenseNumber(licenseNumber);
-               bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
+        public void FillWheelsToMaximum()
+        {
+            m_UI.AskingLicenseNumber();
+            string licenseNumber = m_UI.GetInput();
+            m_Validator.ValidateLicenseNumber(licenseNumber);
+            bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
-               if(vehicleExist)
-               {
-                    m_Garage.FillToMaximum(licenseNumber);
-               }
-               else
-               {
-                    string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
-                    throw new ArgumentException(errMsg);
-               }
-          }
+            if (vehicleExist)
+            {
+                m_Garage.FillToMaximum(licenseNumber);
+            }
+            else
+            {
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                throw new ArgumentException(errMsg);
+            }
+        }
 
-          public void FillFuelVehicle()
-          {
-               float amountOfFuel;
-               int typeOfFuel;
-               m_UI.AskingLicenseNumber();
-               string licenseNumber = m_UI.GetInput();
-               m_Validator.ValidateLicenseNumber(licenseNumber);
-               bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
+        public void FillFuelVehicle()
+        {
+            float amountOfFuel;
+            int typeOfFuel;
+            m_UI.AskingLicenseNumber();
+            string licenseNumber = m_UI.GetInput();
+            m_Validator.ValidateLicenseNumber(licenseNumber);
+            bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
-               if (vehicleExist)
-               {
-                    amountOfFuel = m_UI.GetFloatInput();
-                    m_UI.PrintMessage(Messages.AskingTypeOfFuel);
-                    typeOfFuel = m_UI.GetIntInRange(1, 4);
-                    m_Garage.FillFuel(licenseNumber,amountOfFuel,(eFuelType)typeOfFuel);
-               }
-               else
-               {
-                    string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
-                    throw new ArgumentException(errMsg);
-               }
-          }
+            if (vehicleExist)
+            {
+                amountOfFuel = m_UI.GetFloatInput();
+                m_UI.PrintMessage(Messages.AskingTypeOfFuel);
+                typeOfFuel = m_UI.GetIntInRange(1, 4);
+                m_Garage.FillFuel(licenseNumber, amountOfFuel, (eFuelType)typeOfFuel);
+            }
+            else
+            {
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                throw new ArgumentException(errMsg);
+            }
+        }
 
-          public void FillElectricVehicle()
-          {
-               int amountOfMinutes;
-               m_UI.AskingLicenseNumber();
-               string licenseNumber = m_UI.GetInput();
-               m_Validator.ValidateLicenseNumber(licenseNumber);
-               bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
+        public void FillElectricVehicle()
+        {
+            int amountOfMinutes;
+            m_UI.AskingLicenseNumber();
+            string licenseNumber = m_UI.GetInput();
+            m_Validator.ValidateLicenseNumber(licenseNumber);
+            bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
-               if (vehicleExist)
-               {
-                    amountOfMinutes = m_UI.GetIntNumber();
-                    //m_Garage.FillElectric(licenseNumber,amountOfMinutes);
-               }
-               else
-               {
-                    string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
-                    throw new ArgumentException(errMsg);
-               }
-          }
+            if (vehicleExist)
+            {
+                amountOfMinutes = m_UI.GetIntNumber();
+                //m_Garage.FillElectric(licenseNumber,amountOfMinutes);
+            }
+            else
+            {
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                throw new ArgumentException(errMsg);
+            }
+        }
 
-          public void ShowFullDetailsOfVehcile()
-          {
-               m_UI.AskingLicenseNumber();
-               string licenseNumber = m_UI.GetInput();
-               m_Validator.ValidateLicenseNumber(licenseNumber);
-               bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
+        public void ShowFullDetailsOfVehcile()
+        {
+            m_UI.AskingLicenseNumber();
+            string licenseNumber = m_UI.GetInput();
+            m_Validator.ValidateLicenseNumber(licenseNumber);
+            bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
-               if (vehicleExist)
-               {
-                    m_Garage.ShowFullDetailsByLicendeId(licenseNumber);
-               }
-               else
-               {
-                    string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
-                    throw new ArgumentException(errMsg);
-               }
-          }
+            if (vehicleExist)
+            {
+                m_Garage.ShowFullDetailsByLicendeId(licenseNumber);
+            }
+            else
+            {
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                throw new ArgumentException(errMsg);
+            }
+        }
 
-        public void AddNewVehicle() 
+        public void AddNewVehicle()
         {
             string licenseNumber = m_UI.AskingLicenseNumber();
             bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
@@ -273,7 +272,7 @@ namespace Ex03.ConsoleUI
             }
             else if (fieldType == typeof(Boolean)) //is boolean
             {
-                fieldOutName = string.Concat(fieldOutName, string.Format("(1 - True, 0 - False){0}",Environment.NewLine));
+                fieldOutName = string.Concat(fieldOutName, string.Format("(1 - True, 0 - False){0}", Environment.NewLine));
                 m_UI.PrintMessage(fieldOutName);
                 bool boolValue = m_UI.GetBool();
                 setMemberValue<bool>(i_memberField, i_Vehicle, boolValue);
@@ -309,7 +308,7 @@ namespace Ex03.ConsoleUI
         //T getValueForField<T>()
         //{
         //    T retVal;
-             
+
         //}
 
         private void printOptionsForMemberField(FieldInfo memberField)
@@ -319,7 +318,7 @@ namespace Ex03.ConsoleUI
 
         private string getNameOfMemberField(FieldInfo i_MemberField)
         {
-            return i_MemberField.Name; 
+            return i_MemberField.Name;
         }
 
         private string getName()
@@ -327,15 +326,15 @@ namespace Ex03.ConsoleUI
             m_UI.PrintMessage(Messages.EnterOwnerName);
             string ownerName = m_UI.GetInput();
 
-               try
-               {
-                    m_Validator.CheckIfStringIsValidOwnerName(ownerName);
-               }
-               catch(Exception ex)
-               {
-                    m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
-               }
-           
+            try
+            {
+                m_Validator.CheckIfStringIsValidOwnerName(ownerName);
+            }
+            catch (Exception ex)
+            {
+                m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
+            }
+
             return ownerName;
         }
 
@@ -344,14 +343,14 @@ namespace Ex03.ConsoleUI
             m_UI.PrintMessage(Messages.EnterPhoneNumber);
             string phoneNumber = m_UI.GetInput();
 
-             try
-               {
-                    m_Validator.CheckIfStringIsValidPhoneNumber(phoneNumber);
-               }
-               catch(Exception ex)
-               {
-                    m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
-               }
+            try
+            {
+                m_Validator.CheckIfStringIsValidPhoneNumber(phoneNumber);
+            }
+            catch (Exception ex)
+            {
+                m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
+            }
 
             return phoneNumber;
         }
@@ -362,7 +361,7 @@ namespace Ex03.ConsoleUI
             try
             {
                 vehicleType = GetEnumType<GarageLogic.eVehicleType>(Messages.SelectVehicleType);
-            } 
+            }
             catch (Exception ex)
             {
                 m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
@@ -398,7 +397,7 @@ namespace Ex03.ConsoleUI
         //}
         public string GetLicenseNumber()
         {
-             return m_Validator.ValidateLicenseNumber(m_UI.AskingLicenseNumber());
+            return m_Validator.ValidateLicenseNumber(m_UI.AskingLicenseNumber());
 
         }
 
