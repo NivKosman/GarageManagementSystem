@@ -9,16 +9,28 @@ namespace Ex03.GarageLogic
     class VehicleFactory
     {
         private const int k_CarNumberOfWheels = 4;
-        private const float k_CarMaxPressure = 31;
-        private const int k_CarMaxElectricEngTime = 108; //1.8 * 60
+        private const int k_BikeNumberOfWheels = 2;
+        private const int k_TruckNumberOfWheels = 12;
+
+        private const float k_CarMaxPressure = 31f;
+        private const float k_BikeMaxPressure = 33f;
+        private const float k_TruckMaxPressure = 26f;
+
+        private const float k_CarMaxElectricEngTime = 1.8f;//108; //1.8 * 60
+        private const float k_BikeMaxElectricEngTime = 1.4f;//84; 
+
         private const int k_CarMaxFuelCapacity = 55;
+        private const int k_BikeMaxFuelCapacity = 8;
+        private const int k_TruckMaxFuelCapacity = 110;
+
         private const eFuelType k_CarFuelType = eFuelType.Octan96;
-        //private MakeCreateNewCarRequest m_Request;
+        private const eFuelType k_BikeFuelType = eFuelType.Octan95;
+        private const eFuelType k_TruckFuelType = eFuelType.Soler;
 
         public Vehicle CreateNewCarOfType(eVehicleType i_VehicleType, string i_LicenseNumber)
         {
             Vehicle vehicle;
-            Engine engine;
+            Engine engine = null;
             List<Wheel> wheels;
             switch (i_VehicleType)
             {
@@ -32,6 +44,23 @@ namespace Ex03.GarageLogic
                     engine = new ElectricEngine(k_CarMaxElectricEngTime);
                     vehicle = new Car(i_LicenseNumber, engine, wheels);
                     break;
+                case (eVehicleType.FuelBike):
+                    wheels = CreateWheels(k_BikeMaxPressure, k_BikeNumberOfWheels);
+                    engine = new FuelEngine(k_BikeMaxFuelCapacity, k_BikeFuelType);
+                    vehicle = new Bike(i_LicenseNumber ,engine, wheels);
+
+                    break;
+                case (eVehicleType.ElectricBike):
+                    wheels = CreateWheels(k_BikeMaxPressure, k_BikeNumberOfWheels);
+                    engine = new ElectricEngine(k_BikeMaxElectricEngTime);
+                    vehicle = new Bike(i_LicenseNumber, engine, wheels);
+                    break;
+                case (eVehicleType.Truck):
+                    wheels = CreateWheels(k_TruckMaxPressure, k_TruckNumberOfWheels);
+                    engine = new FuelEngine(k_TruckMaxFuelCapacity, k_TruckFuelType);
+                    vehicle = new Truck(i_LicenseNumber, engine, wheels);
+                    break;
+
                 default:
                     throw new ArgumentException(string.Format("Error: Invalid vehicle type {0}", i_VehicleType));
             }
@@ -49,44 +78,5 @@ namespace Ex03.GarageLogic
 
             return wheels;
         }
-       
-        //private ElectricEngine CreateElectricEngineForCar()
-        //{
-        //    ElectricEngine engine;
-        //    engine = new ElectricEngine(m_Request.Request.HoursLeft, (float)1.8);
-        //    return engine;
-        //}
-
-        //private ElectricEngine CreateElectricEngineForBike()
-        //{
-        //    ElectricEngine engine;
-        //    engine = new ElectricEngine(m_Request.Request.HoursLeft, (float)1.4);
-        //    return engine;
-        //}
-
-        //private FuelEngine CreateFuelEngineForCar()
-        //{
-        //    FuelEngine engine;
-        //    engine = new FuelEngine(m_Request.Request.CurrentFuelCapacity, 55, eFuelType.Octan96);
-        //    return engine;
-        //}
-
-        //private FuelEngine CreateFuelEngineForBike()
-        //{
-        //    FuelEngine engine;
-        //    engine = new FuelEngine(m_Request.Request.CurrentFuelCapacity, 8, eFuelType.Octan95);
-        //    return engine;
-        //}
-
-        //private FuelEngine CreateFuelEngineForTruck()
-        //{
-        //    FuelEngine engine;
-        //    engine = new FuelEngine(m_Request.Request.CurrentFuelCapacity, 110, eFuelType.Soler);
-        //    return engine;
-        //}
-
-
-
-
     }
 }

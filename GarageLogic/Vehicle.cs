@@ -56,6 +56,16 @@ namespace Ex03.GarageLogic
             get { return r_LicenseNumber; } 
         }
 
+        public int NumOfWheels
+        {
+            get { return r_CollectionOfWheels.Count; } 
+        }
+
+        public float MaxWheelsPressure
+        {
+            get { return r_CollectionOfWheels[0].MaxAirPressure; }
+        }
+
         public Engine Engine
         {
             //set { m_Engine = value; }
