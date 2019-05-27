@@ -8,6 +8,5 @@ namespace Ex03.GarageLogic
         ElectricCar = 3,
         FuelCar = 4,
         Truck = 5,
-        //NotValidReques = 
     }
 }

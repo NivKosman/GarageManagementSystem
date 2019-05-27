@@ -16,8 +16,8 @@ namespace Ex03.GarageLogic
         private const float k_BikeMaxPressure = 33f;
         private const float k_TruckMaxPressure = 26f;
 
-        private const float k_CarMaxElectricEngTime = 1.8f;//108; //1.8 * 60
-        private const float k_BikeMaxElectricEngTime = 1.4f;//84; 
+        private const float k_CarMaxElectricEngTime = 1.8f;
+        private const float k_BikeMaxElectricEngTime = 1.4f;
 
         private const int k_CarMaxFuelCapacity = 55;
         private const int k_BikeMaxFuelCapacity = 8;

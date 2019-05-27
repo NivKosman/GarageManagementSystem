@@ -6,6 +6,5 @@ namespace Ex03.GarageLogic
         InProgress=1,
         Fixed,
         Paid
-
     }
 }

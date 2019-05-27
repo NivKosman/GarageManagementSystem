@@ -113,7 +113,6 @@ namespace Ex03.ConsoleUI
             PrintMessage(i_Message);
             for (int i = 0; i < i_Options.Length; i++)
             {
-                //string stringValue = Enum.GetName(typeof(EnumDisplayStatus), i_Options.GetValue(i));
                 string option = string.Format("{0} - {1}{2}", (int)i_Options.GetValue(i), i_Options.GetValue(i), Environment.NewLine);
                 PrintMessage(option);
             }
@@ -127,10 +126,6 @@ namespace Ex03.ConsoleUI
                 string option = string.Format("{0} - {1}{2}", i+1, i_Options.ElementAt(i), Environment.NewLine);
                 PrintMessage(option);
             }
-            //foreach (var option in i_Options)
-            //{
-            //    PrintMessage(option.ToString()); 
-            //} 
         }
 
         public string AskingTypeOfFuel()
@@ -195,7 +190,5 @@ namespace Ex03.ConsoleUI
         {
             PrintMessage(Messages.TooMuchMinutes);
         }
-
-
     }
 }
