@@ -78,6 +78,7 @@ namespace Ex03.ConsoleUI
         public void ShowAllLicenseNumberVehicle()
         {
             StringBuilder sb = new StringBuilder();
+
             sb = m_Garage.AllLicenseNumbers();
             m_UI.PrintMessage(sb.ToString());
         }
@@ -85,9 +86,11 @@ namespace Ex03.ConsoleUI
         public void ShowLicenseNumberByStatus(eVehicleStatus i_Status)
         {
             StringBuilder sb = new StringBuilder();
+
             sb = m_Garage.AllLicenseNumbersByStatus(i_Status);
             m_UI.PrintMessage(sb.ToString());
         }
+
         public void ChangeStatusOfVehicle()
         {
             m_UI.AskingLicenseNumber();
@@ -165,7 +168,7 @@ namespace Ex03.ConsoleUI
             if (vehicleExist)
             {
                 amountOfMinutes = m_UI.GetIntNumber();
-                //m_Garage.FillElectric(licenseNumber,amountOfMinutes);
+                m_Garage.FillElectric(licenseNumber,amountOfMinutes);
             }
             else
             {
@@ -183,7 +186,7 @@ namespace Ex03.ConsoleUI
 
             if (vehicleExist)
             {
-                m_Garage.ShowFullDetailsByLicendeId(licenseNumber);
+               m_UI.PrintMessage(m_Garage.ShowFullDetailsByLicendeId(licenseNumber));
             }
             else
             {
@@ -445,7 +448,5 @@ namespace Ex03.ConsoleUI
                 //ArgumentException
             }
         }
-
-
     }
 }

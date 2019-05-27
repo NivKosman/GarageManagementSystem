@@ -5,3 +5,10 @@ C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\bin\Debug\GarageLogic.dll
 C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\bin\Debug\GarageLogic.pdb
 C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\obj\x86\Debug\UIComponent.exe
 C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\obj\x86\Debug\UIComponent.pdb
+C:\Users\nivko\Desktop\github\Ex3_Garage_new\obj\x86\Debug\UIComponent.exe
+C:\Users\nivko\Desktop\github\Ex3_Garage_new\obj\x86\Debug\UIComponent.pdb
+C:\Users\nivko\Desktop\github\Ex3_Garage_new\bin\Debug\UIComponent.exe
+C:\Users\nivko\Desktop\github\Ex3_Garage_new\bin\Debug\UIComponent.pdb
+C:\Users\nivko\Desktop\github\Ex3_Garage_new\bin\Debug\GarageLogic.dll
+C:\Users\nivko\Desktop\github\Ex3_Garage_new\bin\Debug\GarageLogic.pdb
+C:\Users\nivko\Desktop\github\Ex3_Garage_new\obj\x86\Debug\UIComponent.csprojResolveAssemblyReference.cache
