@@ -118,8 +118,6 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException("Error: Invalid Value was entered.");
 
             }
-
-
         }
     }
 }

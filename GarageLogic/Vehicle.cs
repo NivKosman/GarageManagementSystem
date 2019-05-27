@@ -68,7 +68,6 @@ namespace Ex03.GarageLogic
 
         public Engine Engine
         {
-            //set { m_Engine = value; }
             get { return r_Engine; } 
         }
 

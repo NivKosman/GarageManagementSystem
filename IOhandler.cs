@@ -20,6 +20,27 @@ namespace Ex03.ConsoleUI
             m_UI = new UI();
             m_Garage = new GarageLogic.Garage();
         }
+          
+          public void RunTheSystem()
+          {
+               int optionMenu;
+               bool isQuit = false;
+
+               while(!isQuit)
+               {
+                    m_UI.PrintMenu();
+                    optionMenu = m_UI.GetOptionInput();
+                    if (optionMenu >= 1 && optionMenu <= 7)
+                    {
+                         RunSelectedOption(optionMenu);
+                    }
+                    else
+                    {
+                         isQuit = true;
+                    }
+               }
+               Environment.Exit(1);
+          }
 
         public void RunSelectedOption(int i_Selection)
         {
@@ -99,21 +120,6 @@ namespace Ex03.ConsoleUI
             string statusNumberString = m_UI.AskingNewStatusOfVehicle();
 
             m_Garage.UpdateVehicleStatus(licenseNumber, statusNumberString);
-            //if (!m_Validator.CheckIfInputIsNumber(statusNumberString, out statusNumber))
-            //{
-            //    throw new FormatException(Messages.FormatMessages);
-            //}
-            //else
-            //{
-            //    if (!m_Validator.CheckIfNumberInRangeOfNewStatus(ref statusNumber))
-            //    {
-            //        //ValueOutOfRangeExeption
-            //    }
-            //    else
-            //    {
-            //        //m_garage.UpdateVehicleStatus(licenseNumber,statusnumber)
-            //    }
-            //}
         }
 
         public void FillWheelsToMaximum()
@@ -232,7 +238,6 @@ namespace Ex03.ConsoleUI
 
             foreach (FieldInfo memberField in vehicleMembers)
             {
-                //string nameOfMemberField = getNameOfMemberField(memberField);
                 setValueOfMemberField(memberField, i_Vehicle);
                 printOptionsForMemberField(memberField);
             }
@@ -244,36 +249,17 @@ namespace Ex03.ConsoleUI
             string nameOfMemberField = getNameOfMemberField(i_memberField);
             Type fieldType = i_memberField.GetType();
             string fieldOutName = string.Format("Enter the value for field - {0}:{1}", nameOfMemberField, Environment.NewLine);
-            if (fieldType.IsEnum) // is number
+            if (fieldType.IsEnum) 
             {
-                System.Array enumValues = System.Enum.GetValues(fieldType); //get enum options
+                System.Array enumValues = System.Enum.GetValues(fieldType); 
 
                 m_UI.ShowOptionFromArray(fieldOutName, enumValues);
 
                 int intValue = m_UI.GetIntNumber();
                 PropertyInfo propertyInfo = i_Vehicle.GetType().GetProperty(i_memberField.Name);
                 propertyInfo.SetValue(i_Vehicle, Convert.ChangeType(intValue, i_memberField.FieldType), null);
-                //System.Type enumUnderlyingType = System.Enum.GetUnderlyingType(fieldType);
-
-                //int minValue = enumValues.GetValue(0);
-                //int maxValue = 
-                //TODO: handle num range
-
-                //int intValue = m_UI.GetIntNumber();//m_UI.GetIntInRange(minValue), enumValues.GetValue(enumValues.Length - 1);
-                //i_memberField.SetValue(i_Vehicle, Enum.Parse(i_memberField.GetType(), intValue);
-                //i_memberField.SetValue(i_Vehicle, Convert.ChangeType(intValue, i_memberField.FieldType), null);
-
-
-                //setMemberValue<>(i_memberField, i_Vehicle, intValue);
-                //IEnumerable<FieldInfo.GetFieldFromHandle(i_memberField)> enumOptions = //GarageLogic.eNumUtils.GetValues<T>();
-                //GarageLogic.eVehicleType enumOptions = GetVehicleType<typeof(fieldType)>(Messages.SelectVehicleType);
-                //    IEnumerable<T> enumOptions = GarageLogic.eNumUtils.GetValues<T>();
-                //GetVehicleType<GarageLogic.eVehicleType>(Messages.SelectVehicleType)
-                //
-                //m_UI.PrintMessage(fieldOutName);
-
             }
-            else if (fieldType == typeof(Boolean)) //is boolean
+            else if (fieldType == typeof(Boolean)) 
             {
                 fieldOutName = string.Concat(fieldOutName, string.Format("(1 - True, 0 - False){0}", Environment.NewLine));
                 m_UI.PrintMessage(fieldOutName);
@@ -307,12 +293,6 @@ namespace Ex03.ConsoleUI
         {
             i_memberField.SetValue(i_Vehicle, i_Value);
         }
-
-        //T getValueForField<T>()
-        //{
-        //    T retVal;
-
-        //}
 
         private void printOptionsForMemberField(FieldInfo memberField)
         {
@@ -386,22 +366,10 @@ namespace Ex03.ConsoleUI
             return selectEnum;
         }
 
-        //public void GetNewVehicle()
-        //{
-        //    string license_Id = GetLicenseNumber();
-        //    if (m_Garage.VehicleExistInGarage(license_Id))
-        //    {
-        //        m_UI.CarAlreadyInGarage();
-        //        m_Garage.setInProgressStatus();
-        //        //TODO: notify user that vehicle exist and update status of vehicle
-
-        //    }
-
-        //}
         public string GetLicenseNumber()
         {
-            return m_Validator.ValidateLicenseNumber(m_UI.AskingLicenseNumber());
 
+            return m_Validator.ValidateLicenseNumber(m_UI.AskingLicenseNumber());
         }
 
         public int GetNumber(string i_Message)
