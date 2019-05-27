@@ -104,5 +104,22 @@ namespace Ex03.GarageLogic
         {
             m_Vehicles[i_LicenseId].Status = i_NewStatus;
         }
+
+        public void UpdateVehicleStatus(string i_LicenseId, string i_NewStatus)
+        {
+            eVehicleStatus newStatus;
+            try
+            {
+                newStatus = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_NewStatus);
+                m_Vehicles[i_LicenseId].Status = newStatus;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error: Invalid Value was entered.");
+
+            }
+
+
+        }
     }
 }
