@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.ConsoleUI", "..\Ex03.ConsoleUI.csproj", "{E1CFEA2F-3A1E-4453-96E3-93E4D02F39AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.GarageLogic", "..\GarageLogic\Ex03.GarageLogic.csproj", "{C8E96E6A-9F35-475C-9E31-2943E7AD5BE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1CFEA2F-3A1E-4453-96E3-93E4D02F39AA}.Debug|x86.ActiveCfg = Debug|x86
+		{E1CFEA2F-3A1E-4453-96E3-93E4D02F39AA}.Debug|x86.Build.0 = Debug|x86
+		{E1CFEA2F-3A1E-4453-96E3-93E4D02F39AA}.Release|x86.ActiveCfg = Release|x86
+		{E1CFEA2F-3A1E-4453-96E3-93E4D02F39AA}.Release|x86.Build.0 = Release|x86
+		{C8E96E6A-9F35-475C-9E31-2943E7AD5BE8}.Debug|x86.ActiveCfg = Debug|x86
+		{C8E96E6A-9F35-475C-9E31-2943E7AD5BE8}.Debug|x86.Build.0 = Debug|x86
+		{C8E96E6A-9F35-475C-9E31-2943E7AD5BE8}.Release|x86.ActiveCfg = Release|x86
+		{C8E96E6A-9F35-475C-9E31-2943E7AD5BE8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

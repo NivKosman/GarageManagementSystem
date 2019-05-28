@@ -24,9 +24,8 @@ namespace Ex03.GarageLogic
         
         }
 
-        public Engine(float i_MaxEnergyUnit)//float i_EnergyUnitLeft, 
+        public Engine(float i_MaxEnergyUnit)
         {
-            //m_EnergyUnitLeft = i_EnergyUnitLeft;
             m_MaxEnergyUnit = i_MaxEnergyUnit;
         }
 

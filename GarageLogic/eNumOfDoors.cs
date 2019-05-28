@@ -7,6 +7,5 @@ namespace Ex03.GarageLogic
         Three,
         Four,
         Five
-
     }
 }

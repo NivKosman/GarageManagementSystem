@@ -13,15 +13,15 @@ namespace Ex03.GarageLogic
         private float m_EnergyLeft;
         private int m_NumberOfWheels;
         private Engine m_Engine;
-        private eFuelType m_FuelType;//0
-        private float m_CurrentFuelCapacity;//1
-        private float m_HoursLeft;//2 
-        private eColor m_Color;//3
-        private eNumberOfDoors m_NumberOfDoors;//4
-        private bool v_IsHoldsDangerCargo;//5
-        private float m_CargoCapacity;//6
-        private eBikeLicenseType m_LicenseBikeType;//7
-        private int m_EngineBikeCapaicty;//8
+        private eFuelType m_FuelType;
+        private float m_CurrentFuelCapacity;
+        private float m_HoursLeft;
+        private eColor m_Color;
+        private eNumberOfDoors m_NumberOfDoors;
+        private bool v_IsHoldsDangerCargo;
+        private float m_CargoCapacity;
+        private eBikeLicenseType m_LicenseBikeType;
+        private int m_EngineBikeCapaicty;
         public bool[] m_CheckedList = new bool[9];
 
         public float CurrentFuelCapacity

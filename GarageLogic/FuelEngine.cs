@@ -16,11 +16,6 @@ namespace Ex03.GarageLogic
         {
             r_FuelType = i_FuelType;
         }
-        //public FuelEngine(float i_CurrentFuelCapacity, float i_MaxFuelCapacity, eFuelType i_FuelType) :
-        //  base(i_CurrentFuelCapacity, i_MaxFuelCapacity)
-        //{
-        //    r_FuelType = i_FuelType;
-        //}
 
         public void Fill(float i_AmoutOfLiters, eFuelType i_FuelType)
         {
