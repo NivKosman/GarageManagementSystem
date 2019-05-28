@@ -23,11 +23,12 @@ namespace Ex03.ConsoleUI
             Console.WriteLine(i_MessageToPrint);
         }
 
-        public string AskingLicenseNumber()
+        public string GetLicenseNumber()
         {
             PrintMessage(Messages.AskingLicenseNumber);
+            string licenseNumber = GetInput();
 
-            return GetInput();
+            return licenseNumber;
         }
         public int GetOptionInput()
         {

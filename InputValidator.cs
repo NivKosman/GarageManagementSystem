@@ -78,15 +78,13 @@ namespace Ex03.ConsoleUI
 
             return isValid;
         }
-        public string ValidateLicenseNumber(string i_LicenseNumberString)
+        public void ValidateLicenseNumber(string i_LicenseNumberString)
         {
             if (i_LicenseNumberString.Length == 0 ||  !allCharsAreLetterOrDigit(i_LicenseNumberString))
             {
                 string errorMsg = string.Format("Error: Invalid License ID: {0}", i_LicenseNumberString);
                 throw new ArgumentException(errorMsg);
             }
-
-            return i_LicenseNumberString;
         }
     }
 }

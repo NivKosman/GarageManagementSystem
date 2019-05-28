@@ -24,8 +24,13 @@ Cargo capacity:{2}", base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);
         {
         }
 
+        public bool IsHoldsDangerCargo
+        {
+            set { m_IsHoldsDangerCargo = value; } 
+        }
         public float CargoCapacity
         {
+            set { m_CargoCapacity = value; }
             get { return m_CargoCapacity; } 
         }
 
