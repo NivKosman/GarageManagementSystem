@@ -47,5 +47,8 @@
     <Compile Include="VehicleRequest.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

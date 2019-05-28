@@ -13,10 +13,9 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
           {
-               return string.Format(@"{1}{0}
-                                   Holds Danager Cargo:{2}{0}
-                                   Cargo capacity:{3}",
-                                   Environment.NewLine, base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);
+               return string.Format(@"{0}
+Holds Danager Cargo:{1}
+Cargo capacity:{2}", base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);                                
           }
 
         public Truck(string i_LicenseNumber, Engine i_Engine,

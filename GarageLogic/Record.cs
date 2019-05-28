@@ -10,11 +10,11 @@ namespace Ex03.GarageLogic
 
           public override string ToString()
           {
-               return string.Format(@"{1}{0}
-                                   Phone Number:{2}{0}
-                                   Owner Name:{3}{0}
-                                   Vehicle Status:{4}",
-                                   Environment.NewLine, base.ToString(), m_PhoneNumber, m_OwnerName, m_VehicleStatus);
+               return string.Format(@"{0}
+Phone Number:{1}
+Owner Name:{2}
+Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_VehicleStatus);
+                                   
           }
 
           public Record(Vehicle i_Vehicle)
