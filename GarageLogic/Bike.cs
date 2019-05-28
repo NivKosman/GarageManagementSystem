@@ -19,6 +19,11 @@ Energy Size:{2}",base.ToString(), m_LicenseType, m_EngineSize);
              base(i_LicenseNumber, i_Engine, i_Wheels)
         {
         }
+
+        public float CurrentEnergy
+        {
+            set { m_EnergyLeft = value; }
+        }
         public eBikeLicenseType LicenseType
         {
             set { m_LicenseType = value; } 

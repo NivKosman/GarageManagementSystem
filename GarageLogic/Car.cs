@@ -29,13 +29,16 @@ Number of doors{2}", base.ToString(), m_Color, m_NumberOfDoors);
             set { m_NumberOfDoors = value; }
             get { return m_NumberOfDoors; }
         }
-
+        public float CurrentEnergy
+        {
+            set { m_EnergyLeft = value; }
+        }
         public eColor Color
         {
             set { m_Color = value; }
             get { return m_Color; }
         }
-
+        
         public eFuelType FuelType
         {
             get

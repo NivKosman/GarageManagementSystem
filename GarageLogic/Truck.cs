@@ -33,6 +33,10 @@ Cargo capacity:{2}", base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);
             set { m_CargoCapacity = value; }
             get { return m_CargoCapacity; } 
         }
+        public float CurrentEnergy
+        {
+            set { m_EnergyLeft = value; }
+        }
 
     }
 }
