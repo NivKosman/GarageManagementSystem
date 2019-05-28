@@ -119,9 +119,7 @@ namespace Ex03.ConsoleUI
 
         public void ChangeStatusOfVehicle()
         {
-            m_UI.AskingLicenseNumber();
-            string licenseNumber = m_UI.GetInput();
-            m_Validator.ValidateLicenseNumber(licenseNumber);
+            string licenseNumber = GetLicenseNumber();
             string statusNumberString = m_UI.AskingNewStatusOfVehicle();
 
             m_Garage.UpdateVehicleStatus(licenseNumber, statusNumberString);
@@ -129,9 +127,7 @@ namespace Ex03.ConsoleUI
 
         public void FillWheelsToMaximum()
         {
-            m_UI.AskingLicenseNumber();
-            string licenseNumber = m_UI.GetInput();
-            m_Validator.ValidateLicenseNumber(licenseNumber);
+            string licenseNumber = GetLicenseNumber();
             bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
             if (vehicleExist)
@@ -149,9 +145,7 @@ namespace Ex03.ConsoleUI
         {
             float amountOfFuel;
             int typeOfFuel;
-            m_UI.AskingLicenseNumber();
-            string licenseNumber = m_UI.GetInput();
-            m_Validator.ValidateLicenseNumber(licenseNumber);
+            string licenseNumber = GetLicenseNumber();
             bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
             if (vehicleExist)
@@ -171,9 +165,7 @@ namespace Ex03.ConsoleUI
         public void FillElectricVehicle()
         {
             int amountOfMinutes;
-            m_UI.AskingLicenseNumber();
-            string licenseNumber = m_UI.GetInput();
-            m_Validator.ValidateLicenseNumber(licenseNumber);
+            string licenseNumber = GetLicenseNumber();
             bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
             if (vehicleExist)
@@ -190,9 +182,7 @@ namespace Ex03.ConsoleUI
 
         public void ShowFullDetailsOfVehcile()
         {
-            m_UI.AskingLicenseNumber();
-            string licenseNumber = m_UI.GetInput();
-            m_Validator.ValidateLicenseNumber(licenseNumber);
+            string licenseNumber = GetLicenseNumber();
             bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
             if (vehicleExist)
@@ -208,7 +198,7 @@ namespace Ex03.ConsoleUI
 
         public void AddNewVehicle()
         {
-            string licenseNumber = m_UI.AskingLicenseNumber();
+            string licenseNumber = GetLicenseNumber();
             bool vehicleExist = m_Garage.VehicleExistInGarage(licenseNumber);
 
             if (vehicleExist)
@@ -237,7 +227,7 @@ namespace Ex03.ConsoleUI
             updateVehicleWithAnyExtraFields(record.Vehicle);
         }
 
-        public void updateVehicleWithAnyExtraFields(GarageLogic.Vehicle i_Vehicle)
+        private void updateVehicleWithAnyExtraFields(GarageLogic.Vehicle i_Vehicle)
         {
             //FieldInfo[] vehicleMembers = i_Vehicle.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
             //foreach (FieldInfo memberField in vehicleMembers)
@@ -249,15 +239,40 @@ namespace Ex03.ConsoleUI
             PropertyInfo[] props = (i_Vehicle).GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);//BindingFlags.Public | BindingFlags.DeclaredOnly);
             foreach (PropertyInfo memberField in props)
             {
-                setValueOfMemberField(memberField, i_Vehicle);
-                //printOptionsForMemberField(memberField);
+                if (!memberField.CanWrite)
+                {
+                    continue;
+                }
+                bool v_InvalidInputType = true;
+                while (v_InvalidInputType)
+                {
+                    //printOptionsForMemberField(memberField);
+                    try
+                    {
+                        //string fieldOutName = string.Format("Enter the value for field - {0}:{1}", memberField.Name, Environment.NewLine);
+                        //Type type = memberField.GetType();
+                        //var x = GetEnumTypeFromUser<memberField.DeclaringType>(fieldOutName);
+                        //vehicleType = GetEnumType<GarageLogic.eVehicleType>(Messages.SelectVehicleType);
+                        setValueOfMemberField(memberField, i_Vehicle);
+                        v_InvalidInputType = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        m_UI.PrintMessage(ex.Message);
+                    }
+                }
+
+
+
             }
         }
+
+
 
         private void setValueOfMemberField(PropertyInfo i_memberField, GarageLogic.Vehicle i_Vehicle)
         {
 
-            string nameOfMemberField = getNameOfMemberField(i_memberField);
+            string nameOfMemberField = i_memberField.Name;
             Type fieldType = i_memberField.GetType();
             string fieldOutName = string.Format("Enter the value for field - {0}:{1}", nameOfMemberField, Environment.NewLine);
             if (fieldType.IsEnum)
@@ -305,21 +320,33 @@ namespace Ex03.ConsoleUI
             i_memberField.SetValue(i_Vehicle, i_Value);
         }
 
-        private void printOptionsForMemberField(FieldInfo memberField)
+        private void printOptionsForMemberField(PropertyInfo i_memberField)
         {
+            Type fieldType = i_memberField.GetType();
+            System.Array enumValues = System.Enum.GetValues(fieldType);
+            string fieldOutName = string.Format("Enter the value for field - {0}:{1}", i_memberField.Name, Environment.NewLine);
+            m_UI.ShowOptionFromArray(fieldOutName, enumValues);
 
-        }
 
-        private string getNameOfMemberField(PropertyInfo i_MemberField)
-        {
-            return i_MemberField.Name;
+            //typeof(memberField) asd; //.//.DeclaringType type;
+            //GarageLogic.eVehicleType vehicleType;
+            //try
+            //{
+            //    vehicleType = GetEnumType<GarageLogic.eVehicleType>(Messages.SelectVehicleType);
+            //}
+            //catch (Exception ex)
+            //{
+            //    m_UI.PrintMessage(ex.Message);
+            //    return GetVehicleType();
+            //}
+
         }
 
         private string getName()
         {
             m_UI.PrintMessage(Messages.EnterOwnerName);
             string ownerName = m_UI.GetInput();
-            
+
             try
             {
                 m_Validator.CheckIfStringIsValidOwnerName(ownerName);
@@ -327,7 +354,7 @@ namespace Ex03.ConsoleUI
             catch (Exception ex)
             {
                 m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
-                 
+
             }
 
             return ownerName;
@@ -344,7 +371,7 @@ namespace Ex03.ConsoleUI
             }
             catch (Exception ex)
             {
-                m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
+                m_UI.PrintMessage(ex.Message);
             }
 
             return phoneNumber;
@@ -359,11 +386,27 @@ namespace Ex03.ConsoleUI
             }
             catch (Exception ex)
             {
-                m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
+                m_UI.PrintMessage(ex.Message);
                 return GetVehicleType();
             }
 
             return vehicleType;
+        }
+
+        public T GetEnumTypeFromUser<T>(string i_Message)
+        {
+            T enumType;
+            try
+            {
+                enumType = GetEnumType<T>(i_Message);
+            }
+            catch (Exception ex)
+            {
+                m_UI.PrintMessage(ex.Message);
+                return GetEnumTypeFromUser<T>(i_Message);
+            }
+
+            return enumType;
         }
 
         public T GetEnumType<T>(string i_Message)
@@ -379,9 +422,20 @@ namespace Ex03.ConsoleUI
         }
 
         public string GetLicenseNumber()
-        {
+        { 
+            string license = m_UI.GetLicenseNumber();
 
-            return m_Validator.ValidateLicenseNumber(m_UI.AskingLicenseNumber());
+            try
+            {
+                m_Validator.ValidateLicenseNumber(license);
+            }
+            catch (Exception ex)
+            {
+                m_UI.PrintMessage(ex.Message);
+                return GetLicenseNumber();
+            }
+
+            return license;
         }
 
         public int GetNumber(string i_Message)

@@ -19,6 +19,18 @@ Energy Size:{2}",base.ToString(), m_LicenseType, m_EngineSize);
              base(i_LicenseNumber, i_Engine, i_Wheels)
         {
         }
+        public eBikeLicenseType LicenseType
+        {
+            set { m_LicenseType = value; } 
+        }
+        public int EngineSize
+        {
+            set { m_EngineSize = value; }
+        }
+        public string ModelName
+        {
+            set { m_ModelName = value; }
+        }
 
     }
 }
