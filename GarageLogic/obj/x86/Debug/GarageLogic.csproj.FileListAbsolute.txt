@@ -2,8 +2,3 @@ C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\GarageLogic\bin\Debug\GarageL
 C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\GarageLogic\bin\Debug\GarageLogic.pdb
 C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\GarageLogic\obj\x86\Debug\GarageLogic.dll
 C:\Users\Avital\Source\Repos\Andrey_Ex3_Garage_new\GarageLogic\obj\x86\Debug\GarageLogic.pdb
-C:\Users\nivko\Desktop\github\Ex3_Garage_new\GarageLogic\bin\Debug\GarageLogic.dll
-C:\Users\nivko\Desktop\github\Ex3_Garage_new\GarageLogic\bin\Debug\GarageLogic.pdb
-C:\Users\nivko\Desktop\github\Ex3_Garage_new\GarageLogic\obj\x86\Debug\GarageLogic.csprojResolveAssemblyReference.cache
-C:\Users\nivko\Desktop\github\Ex3_Garage_new\GarageLogic\obj\x86\Debug\GarageLogic.dll
-C:\Users\nivko\Desktop\github\Ex3_Garage_new\GarageLogic\obj\x86\Debug\GarageLogic.pdb

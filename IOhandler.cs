@@ -20,27 +20,28 @@ namespace Ex03.ConsoleUI
             m_UI = new UI();
             m_Garage = new GarageLogic.Garage();
         }
-          
-          public void RunTheSystem()
-          {
-               int optionMenu;
-               bool isQuit = false;
 
-               while(!isQuit)
-               {
+        public void RunTheSystem()
+        {
+            int optionMenu;
+            bool isQuit = false;
+
+            while (!isQuit)
+            {
+                try
+                {
                     m_UI.PrintMenu();
                     optionMenu = m_UI.GetOptionInput();
-                    if (optionMenu >= 1 && optionMenu <= 7)
-                    {
-                         RunSelectedOption(optionMenu);
-                    }
-                    else
-                    {
-                         isQuit = true;
-                    }
-               }
-               Environment.Exit(1);
-          }
+                    RunSelectedOption(optionMenu);
+                }
+                catch (Exception ex)
+                {
+
+                    m_UI.PrintMessage(ex.Message);
+                }
+
+            }
+        }
 
         public void RunSelectedOption(int i_Selection)
         {
@@ -67,6 +68,10 @@ namespace Ex03.ConsoleUI
                 case (7):
                     ShowFullDetailsOfVehcile();
                     break;
+                case (8):
+                    Environment.Exit(1);
+                    break;
+
                 default:
                     string errMsg = string.Format("Error: Invalid option was entered: {0}", i_Selection);
                     throw new FormatException(errMsg);
@@ -174,7 +179,7 @@ namespace Ex03.ConsoleUI
             if (vehicleExist)
             {
                 amountOfMinutes = m_UI.GetIntNumber();
-                m_Garage.FillElectric(licenseNumber,amountOfMinutes);
+                m_Garage.FillElectric(licenseNumber, amountOfMinutes);
             }
             else
             {
@@ -192,7 +197,7 @@ namespace Ex03.ConsoleUI
 
             if (vehicleExist)
             {
-               m_UI.PrintMessage(m_Garage.ShowFullDetailsByLicendeId(licenseNumber));
+                m_UI.PrintMessage(m_Garage.ShowFullDetailsByLicendeId(licenseNumber));
             }
             else
             {
@@ -216,7 +221,7 @@ namespace Ex03.ConsoleUI
             {
                 GarageLogic.eVehicleType vehicleType = GetVehicleType();
                 GarageLogic.Record record = m_Garage.AddNewVehicle(licenseNumber, vehicleType);
-
+                UpdateRecordWithRelevantInformation(record);
             }
 
         }
@@ -234,32 +239,38 @@ namespace Ex03.ConsoleUI
 
         public void updateVehicleWithAnyExtraFields(GarageLogic.Vehicle i_Vehicle)
         {
-            FieldInfo[] vehicleMembers = i_Vehicle.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            //FieldInfo[] vehicleMembers = i_Vehicle.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            //foreach (FieldInfo memberField in vehicleMembers)
+            //{
+            //    setValueOfMemberField(memberField, i_Vehicle);
+            //    printOptionsForMemberField(memberField);
+            //}
 
-            foreach (FieldInfo memberField in vehicleMembers)
+            PropertyInfo[] props = (i_Vehicle).GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);//BindingFlags.Public | BindingFlags.DeclaredOnly);
+            foreach (PropertyInfo memberField in props)
             {
                 setValueOfMemberField(memberField, i_Vehicle);
-                printOptionsForMemberField(memberField);
+                //printOptionsForMemberField(memberField);
             }
         }
 
-        private void setValueOfMemberField(FieldInfo i_memberField, GarageLogic.Vehicle i_Vehicle)
+        private void setValueOfMemberField(PropertyInfo i_memberField, GarageLogic.Vehicle i_Vehicle)
         {
 
             string nameOfMemberField = getNameOfMemberField(i_memberField);
             Type fieldType = i_memberField.GetType();
             string fieldOutName = string.Format("Enter the value for field - {0}:{1}", nameOfMemberField, Environment.NewLine);
-            if (fieldType.IsEnum) 
+            if (fieldType.IsEnum)
             {
-                System.Array enumValues = System.Enum.GetValues(fieldType); 
+                System.Array enumValues = System.Enum.GetValues(fieldType);
 
                 m_UI.ShowOptionFromArray(fieldOutName, enumValues);
 
                 int intValue = m_UI.GetIntNumber();
                 PropertyInfo propertyInfo = i_Vehicle.GetType().GetProperty(i_memberField.Name);
-                propertyInfo.SetValue(i_Vehicle, Convert.ChangeType(intValue, i_memberField.FieldType), null);
+                propertyInfo.SetValue(i_Vehicle, Convert.ChangeType(intValue, i_memberField.PropertyType), null);
             }
-            else if (fieldType == typeof(Boolean)) 
+            else if (fieldType == typeof(Boolean))
             {
                 fieldOutName = string.Concat(fieldOutName, string.Format("(1 - True, 0 - False){0}", Environment.NewLine));
                 m_UI.PrintMessage(fieldOutName);
@@ -289,7 +300,7 @@ namespace Ex03.ConsoleUI
 
 
         }
-        private void setMemberValue<T>(FieldInfo i_memberField, GarageLogic.Vehicle i_Vehicle, T i_Value)
+        private void setMemberValue<T>(PropertyInfo i_memberField, GarageLogic.Vehicle i_Vehicle, T i_Value)
         {
             i_memberField.SetValue(i_Vehicle, i_Value);
         }
@@ -299,7 +310,7 @@ namespace Ex03.ConsoleUI
 
         }
 
-        private string getNameOfMemberField(FieldInfo i_MemberField)
+        private string getNameOfMemberField(PropertyInfo i_MemberField)
         {
             return i_MemberField.Name;
         }
