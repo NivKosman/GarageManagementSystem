@@ -26,6 +26,7 @@ namespace Ex03.GarageLogic
 
         public eNumberOfDoors NumOfDoors
         {
+            set { m_NumberOfDoors = value; }
             get { return m_NumberOfDoors; }
         }
 

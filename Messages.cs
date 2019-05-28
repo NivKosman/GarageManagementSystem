@@ -28,15 +28,16 @@ namespace Ex03.ConsoleUI
               EnterPhoneNumber = string.Format("Enter Phone Number:{0}", Environment.NewLine),
               InvalidOptionSelected = string.Format("Invalid Option entered, try again:{0}", Environment.NewLine),
               InvalidNumberEntered = string.Format("Invalid Number entered, try again:{0}", Environment.NewLine),
-              GarageMenu = string.Format(@"Hello to our Garage:{0}
-                                        1.Add New Car{0}
-                                        2.See all license Number Vehicle in garage{0}
-                                        3.Change status of car{0}
-                                        4.fill air pressure in wheels of vehicle to Maximum{0}
-                                        5.fill fuel vehicle{0}
-                                        6.fill electric vehicle{0}
-                                        7.show all details of vehicle{0}
-                                        Choose one of the option above and if you want to quit press any other key"
-                                        , Environment.NewLine);
+              GarageMenu = string.Format(@"
+Welcome to our Garage:{0}
+1.Add New Car{0}
+2.See all license Number Vehicle in garage{0}
+3.Change status of car{0}
+4.fill air pressure in wheels of vehicle to Maximum{0}
+5.fill fuel vehicle{0}
+6.fill electric vehicle{0}
+7.show all details of vehicle{0}
+8.exit"
+, Environment.NewLine);
     }
 }
