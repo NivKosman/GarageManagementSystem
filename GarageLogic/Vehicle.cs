@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
          
         private string m_ModelName;
         private readonly string r_LicenseNumber;
-        private float m_EnergyLeft;
+        protected float m_EnergyLeft;
         protected readonly List<Wheel> r_CollectionOfWheels;
         protected readonly Engine r_Engine;
           
@@ -22,8 +22,24 @@ namespace Ex03.GarageLogic
                     wheel.FillToMaximum();
                }
           }
+        public void SetWheelsPressure( float i_PressureToSet)
+        {
+            foreach (Wheel wheel in r_CollectionOfWheels)
+            {
+                wheel.AirPressure = i_PressureToSet;
+            }
+        }
 
-          public override string ToString()
+        public void SetWheelsManufactory(string i_ManufactoryName)
+        {
+            foreach (Wheel wheel in r_CollectionOfWheels)
+            {
+                wheel.ManufactoryName = i_ManufactoryName;
+            }
+        }
+
+
+        public override string ToString()
           {
                return string.Format(@"Model Name:{0}
 License Number:{1}
@@ -75,7 +91,15 @@ Energy Left:{2}
         {
             r_Engine.Fill(i_ToFill);
         }
-    
+        public float CurrentAirInWheels
+        {
+            set { SetWheelsPressure(value); }
+        }
+        public string ManufactoryName
+        {
+            set { SetWheelsManufactory(value); }
+        }
+
 
     }
 }

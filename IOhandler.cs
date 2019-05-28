@@ -273,7 +273,8 @@ namespace Ex03.ConsoleUI
         {
 
             string nameOfMemberField = i_memberField.Name;
-            Type fieldType = i_memberField.GetType();
+            Type fieldType = i_memberField.PropertyType;
+            //Type type = i_memberField.DeclaringType.FullName;
             string fieldOutName = string.Format("Enter the value for field - {0}:{1}", nameOfMemberField, Environment.NewLine);
             if (fieldType.IsEnum)
             {
@@ -283,7 +284,8 @@ namespace Ex03.ConsoleUI
 
                 int intValue = m_UI.GetIntNumber();
                 PropertyInfo propertyInfo = i_Vehicle.GetType().GetProperty(i_memberField.Name);
-                propertyInfo.SetValue(i_Vehicle, Convert.ChangeType(intValue, i_memberField.PropertyType), null);
+                //propertyInfo.SetValue(i_Vehicle, Convert.ChangeType(intValue, fieldType), null);
+                propertyInfo.SetValue(i_Vehicle, Enum.ToObject(fieldType, intValue), null);
             }
             else if (fieldType == typeof(Boolean))
             {
@@ -457,30 +459,6 @@ namespace Ex03.ConsoleUI
             }
 
             return number;
-        }
-
-        public void CheckNumberForNewStatus(ref int i_Number)
-        {
-            if (!m_Validator.CheckIfNumberInRangeOfNewStatus(ref i_Number))
-            {
-                //ValueOutOfRangeException
-            }
-        }
-
-        public void CheckNumberForTypeOfFuel(ref int i_Number)
-        {
-            if (!m_Validator.CheckIfNumberInRangeOfNewStatus(ref i_Number))
-            {
-                //ValueOutOfRangeException
-            }
-        }
-
-        public void CheckStringForLicenseNumber(string i_String)
-        {
-            if (!m_Validator.CheckIfStringIsValidLicenseNumber(i_String))
-            {
-                //ArgumentException
-            }
         }
     }
 }
