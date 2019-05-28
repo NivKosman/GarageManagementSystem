@@ -25,13 +25,13 @@ namespace Ex03.GarageLogic
 
           public override string ToString()
           {
-               return string.Format(@"Model Name:{1}{0}
-                                   License Number:{2}{0}
-                                   Energy Left:{3}{0}
-                                   {4}{0}
-                                   {5}",
-                                   Environment.NewLine, m_ModelName, r_LicenseNumber, m_EnergyLeft,
-                                   r_CollectionOfWheels[0].ToString(), r_Engine.ToString());
+               return string.Format(@"Model Name:{0}
+License Number:{1}
+Energy Left:{2}
+{3}
+{4}",m_ModelName, r_LicenseNumber, m_EnergyLeft,r_CollectionOfWheels[0].ToString(), r_Engine.ToString());
+                                   
+                                   
           }
           public Vehicle(string i_LicenseNumber, Engine i_Engine, List<Wheel> i_Wheels)
         {

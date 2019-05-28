@@ -319,7 +319,7 @@ namespace Ex03.ConsoleUI
         {
             m_UI.PrintMessage(Messages.EnterOwnerName);
             string ownerName = m_UI.GetInput();
-
+            
             try
             {
                 m_Validator.CheckIfStringIsValidOwnerName(ownerName);
@@ -327,6 +327,7 @@ namespace Ex03.ConsoleUI
             catch (Exception ex)
             {
                 m_UI.PrintMessage(string.Format("Error: {0}", ex.Message));
+                 
             }
 
             return ownerName;

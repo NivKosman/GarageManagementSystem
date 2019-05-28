@@ -32,11 +32,11 @@ namespace Ex03.GarageLogic
 
           public override string ToString()
           {
-               return string.Format(@"Fuel engine{0}
-                                   FuelType:{1}{0}
-                                   Current amout of liters:{2}{0}
-                                   Maximum amout of liters:{3}"
-                                   , Environment.NewLine, r_FuelType, m_EnergyUnitLeft, m_MaxEnergyUnit);
+               return string.Format(@"Fuel engine
+FuelType:{0}
+Current amout of liters:{1}
+Maximum amout of liters:{2}", r_FuelType, m_EnergyUnitLeft, m_MaxEnergyUnit);
+                                  
           }
 
           public eFuelType FuelType
