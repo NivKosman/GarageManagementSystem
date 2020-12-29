@@ -1,5 +1,4 @@
 We developed a Garage system.
-
 The system manages 5 types of vehicle: Motorcycle, Electric Motorcycle, Car, Electric Car, Truck.
 
 The Garage provides functionality of: 
